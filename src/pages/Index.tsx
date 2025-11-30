@@ -43,116 +43,128 @@ const Index = () => {
 
   const services = [
     {
-      icon: Workflow,
-      title: "Business Process Automation",
-      description: "Streamline workflows, eliminate manual data entry, and automate document processing to boost productivity.",
+      icon: Sparkles,
+      title: "Initial Diagnostic",
+      description: "Comprehensive evaluation of your current processes, identification of automation opportunities, and actionable roadmap with clear deliverables.",
     },
     {
-      icon: Sparkles,
-      title: "Custom AI Solutions",
-      description: "Tailored AI integrations designed specifically for your business needs and existing systems.",
+      icon: Workflow,
+      title: "Basic Automation",
+      description: "Implementation of simple automations and AI assistants for repetitive tasks. Quick wins that save time immediately with Google Workspace, Microsoft 365, and CRM integrations.",
     },
     {
       icon: Mail,
-      title: "Marketing Automation",
-      description: "Automate email campaigns, social media posting, and content creation to maximize your reach.",
+      title: "Advanced AI Integration",
+      description: "Complex workflow automation, advanced tools integration, custom dashboards, and continuous optimization tailored to your business processes.",
     },
     {
       icon: MessageSquare,
-      title: "AI Chatbots & Support",
-      description: "Deploy intelligent chatbots for 24/7 customer service and automated lead generation.",
+      title: "Ongoing Support",
+      description: "Monthly support for improvements, adjustments, and expansion of automations. Keep your systems running smoothly and evolve with your business.",
     },
   ];
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "CEO, TechFlow Inc",
-      content: "Automakers transformed our operations. We've reduced manual tasks by 75% and our team can focus on strategic work.",
+      name: "David Mitchell",
+      role: "Owner, Mitchell Plumbing Services",
+      content: "Cut no-shows by 35% with automated booking reminders. The SMS and email automation saves me 8 hours a week on admin work.",
       rating: 5,
     },
     {
-      name: "Michael Chen",
-      role: "Operations Director, GrowthCo",
-      content: "The AI chatbot they built handles 80% of our customer inquiries. Our response time went from hours to seconds.",
+      name: "Sophie Chen",
+      role: "Managing Director, Perth Digital Marketing Co",
+      content: "The workflow automation transformed our quote follow-ups. Response rates increased 45% and we closed more deals without hiring extra staff.",
       rating: 5,
     },
     {
-      name: "Emma Rodriguez",
-      role: "Marketing Lead, Innovate Labs",
-      content: "Their marketing automation system boosted our campaign efficiency by 60%. Simply outstanding results.",
+      name: "Tom Harrison",
+      role: "Senior Partner, Northbridge Legal Group",
+      content: "Document processing that used to take days now takes minutes. The AI integration with our practice management system was seamless.",
       rating: 5,
     },
   ];
 
   const faqs = [
     {
-      question: "How long does implementation take?",
-      answer: "Most automation projects take 2-6 weeks from consultation to deployment, depending on complexity. We provide detailed timelines during the initial consultation.",
+      question: "How quickly can we see results from AI automation?",
+      answer: "Basic automations deliver immediate time savings within 1-2 weeks of implementation. Complex integrations take 4-6 weeks but show measurable ROI from day one with reduced manual work and fewer errors.",
     },
     {
-      question: "What systems do you integrate with?",
-      answer: "We integrate with all major platforms including CRMs (Salesforce, HubSpot), email tools (Gmail, Outlook), project management software (Asana, Monday), and most APIs. If you have a specific system, we can work with it.",
+      question: "What platforms and tools do you integrate with?",
+      answer: "We specialize in Perth business tools: Xero, MYOB, Google Workspace, Microsoft 365, ServiceM8, Calendly, Stripe, Square, and most CRMs and ERPs. If you use it, we can probably automate it.",
     },
     {
-      question: "Do I need technical knowledge to use the automations?",
-      answer: "No technical knowledge required! We design all automations with user-friendly interfaces and provide comprehensive training. Your team will be able to manage and monitor everything easily.",
+      question: "Do we need technical staff to maintain the automations?",
+      answer: "No technical knowledge required. We handle all setup, configuration, and technical maintenance. You'll receive simple training on using the automations, and our ongoing support keeps everything running smoothly.",
     },
     {
-      question: "Is my data secure?",
-      answer: "Absolutely. We implement enterprise-grade security measures including encryption, secure API connections, and compliance with data protection regulations like GDPR and CCPA.",
+      question: "How secure is our business data during automation?",
+      answer: "We follow Australian data security standards with encrypted connections, secure API integrations, and compliance with privacy regulations. Your data never leaves your existing platforms - we just connect them intelligently.",
     },
     {
-      question: "What happens if something breaks?",
-      answer: "All our solutions include monitoring and maintenance. We proactively detect issues before they impact your business, and our support team is available to resolve any problems quickly.",
+      question: "What happens if an automation stops working?",
+      answer: "Our ongoing support package includes monitoring and rapid response. Most issues are resolved within hours. We also provide backup procedures and fallback options to ensure business continuity.",
     },
     {
-      question: "Can automations be customized later?",
-      answer: "Yes! Our solutions are built to scale and evolve with your business. We can add features, modify workflows, and adjust automations as your needs change.",
+      question: "Can we start small and expand automations later?",
+      answer: "Absolutely! We recommend starting with high-impact, simple automations. As you see results and build confidence, we expand to more complex workflows. Our packages scale with your business growth.",
+    },
+    {
+      question: "How do you measure the success of automation projects?",
+      answer: "We track concrete metrics: hours saved per week, reduction in manual errors, faster response times, improved customer satisfaction, and cost savings. Every project includes a 30-60-90 day results review.",
+    },
+    {
+      question: "Do you offer training for our team?",
+      answer: "Yes. Each package includes hands-on training sessions for your team. We create simple guides and provide video tutorials. Our support team is always available for questions as your team adapts to new workflows.",
     },
   ];
 
   const pricingPlans = [
     {
-      name: "Starter",
-      price: "$2,499",
+      name: "Discovery",
+      price: "$495",
       period: "one-time",
-      description: "Perfect for small businesses getting started with automation",
+      description: "Understand your automation potential with expert analysis",
       features: [
-        "Up to 3 automated workflows",
-        "Basic email automation",
-        "Customer support chatbot",
-        "Integration with 2 platforms",
-        "30 days of support",
+        "2-hour process evaluation",
+        "Automation opportunity assessment",
+        "Detailed action roadmap",
+        "ROI projections",
+        "Priority recommendations",
+        "30-day implementation plan",
       ],
     },
     {
-      name: "Professional",
-      price: "$6,999",
-      period: "one-time",
-      description: "Comprehensive solution for growing businesses",
+      name: "Automation Starter",
+      price: "$1,950",
+      period: "per month",
+      description: "Quick wins for Perth SMEs ready to save time immediately",
       features: [
-        "Up to 10 automated workflows",
-        "Advanced marketing automation",
-        "Custom AI chatbot with training",
-        "Integration with 5+ platforms",
-        "90 days of support",
-        "Monthly optimization calls",
+        "3-5 workflow automations",
+        "Email & SMS automation",
+        "Booking reminder system",
+        "Quote follow-up automation",
+        "Google Workspace/M365 integration",
+        "2 hours monthly support",
+        "Monthly performance review",
       ],
       popular: true,
     },
     {
-      name: "Enterprise",
-      price: "Custom",
-      period: "quote",
-      description: "Full-scale automation for large organizations",
+      name: "Growth Package",
+      price: "$4,500",
+      period: "per month",
+      description: "Complete automation solution for scaling businesses",
       features: [
-        "Unlimited automated workflows",
-        "Custom AI model development",
-        "Advanced integrations",
-        "Dedicated account manager",
-        "Priority 24/7 support",
-        "Ongoing optimization",
+        "10+ advanced workflows",
+        "AI chatbot & lead capture",
+        "Custom integrations (Xero, MYOB, CRM)",
+        "Real-time dashboards",
+        "Document processing automation",
+        "5 hours monthly optimization",
+        "Weekly reporting & analytics",
+        "Priority Perth-based support",
       ],
     },
   ];
@@ -213,23 +225,48 @@ const Index = () => {
       {/* Hero Section */}
       <section id="home" className="pt-40 pb-20 px-4">
         <div className="container mx-auto text-center">
+          <div className="mb-4 text-primary text-sm font-semibold tracking-wider uppercase animate-fade-in">
+            AI Process Automation for Perth Small Businesses
+          </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
             <span className="bg-gradient-to-r from-primary via-primary-glow to-primary bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent">
-              Transform Your Business
+              Save 5-10 Hours Weekly
             </span>
             <br />
-            <span className="text-foreground">with AI Automation</span>
+            <span className="text-foreground">with Workflow Automation</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto animate-fade-in">
-            Save time, reduce costs, and scale effortlessly with custom AI solutions tailored to your business needs.
+            Perth-based AI automation specialists helping SMEs reduce manual work, cut costs by 20-40%, and scale operations with packaged solutions that deliver measurable results.
           </p>
 
-          <Button asChild size="lg" className="text-lg px-8 py-6 animate-glow animate-fade-in">
-            <a href="https://tally.so/r/wzparq" target="_blank" rel="noopener noreferrer">
-              Book Your Free Consultation
-            </a>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 animate-fade-in">
+            <Button asChild size="lg" className="text-lg px-8 py-6 animate-glow">
+              <a href="https://tally.so/r/wzparq" target="_blank" rel="noopener noreferrer">
+                Book Free Discovery Call
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6">
+              <a onClick={() => scrollToSection("calculator")}>
+                Calculate Your Savings
+              </a>
+            </Button>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground animate-fade-in">
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-primary" />
+              <span>Perth, Western Australia</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-primary" />
+              <span>Save 5-10+ hours monthly</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-primary" />
+              <span>Reduce operational costs 20-40%</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -255,9 +292,9 @@ const Index = () => {
       <section id="services" className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h2>
-            <p className="text-xl text-muted-foreground">
-              Comprehensive AI automation solutions for every aspect of your business
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">AI Automation Services for Perth SMEs</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Packaged solutions designed for measurable results. No hourly rates - just clear deliverables and transparent pricing.
             </p>
           </div>
 
@@ -327,8 +364,8 @@ const Index = () => {
       <section id="faq" className="py-20 px-4 bg-secondary/30">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h2>
-            <p className="text-xl text-muted-foreground">Everything you need to know about our automation solutions</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">AI Automation FAQ for Perth Businesses</h2>
+            <p className="text-xl text-muted-foreground">Common questions about workflow automation, implementation, and business process optimization</p>
           </div>
 
           <Accordion type="single" collapsible className="space-y-4">
@@ -348,8 +385,10 @@ const Index = () => {
       <section id="pricing" className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-xl text-muted-foreground">Choose the plan that fits your business needs</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Clear Packages, Measurable Results</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              No hourly rates. Straightforward packages with defined deliverables and transparent pricing for Perth businesses.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
