@@ -160,16 +160,19 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Sticky Navigation */}
-      <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-lg" : "bg-transparent"
-        }`}
-      >
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+      <nav className="fixed top-0 w-full z-50 px-4 pt-4">
+        <div
+          className={`container mx-auto rounded-2xl transition-all duration-300 ${
+            scrolled ? "bg-background/70 backdrop-blur-lg border border-border shadow-lg" : "bg-background/30 backdrop-blur-md"
+          }`}
+        >
+          <div className="px-6 py-4 flex items-center justify-between">
+            <button 
+              onClick={scrollToTop}
+              className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+            >
               Automakers
-            </div>
+            </button>
 
             <div className="hidden md:flex items-center gap-6">
               <button onClick={() => scrollToSection("home")} className="hover:text-primary transition-colors">
@@ -208,7 +211,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-32 pb-20 px-4">
+      <section id="home" className="pt-40 pb-20 px-4">
         <div className="container mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
             <span className="bg-gradient-to-r from-primary via-primary-glow to-primary bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent">
@@ -440,15 +443,15 @@ const Index = () => {
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-center gap-2">
                   <Mail className="w-4 h-4" />
-                  <span>contact@automakers.ai</span>
+                  <span>contact@automakers.com.au</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Phone className="w-4 h-4" />
-                  <span>+1 (555) 123-4567</span>
+                  <span>+61 (08) 9XXX XXXX</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <MapPin className="w-4 h-4" />
-                  <span>San Francisco, CA</span>
+                  <span>Perth, WA</span>
                 </li>
               </ul>
             </div>
