@@ -6,28 +6,36 @@ import { Button } from "@/components/ui/button";
 import { TrendingUp } from "lucide-react";
 
 export const ROICalculator = () => {
+  const [taskDescription, setTaskDescription] = useState<string>("");
+  const [timesPerWeek, setTimesPerWeek] = useState<string>("10");
+  const [timePerTask, setTimePerTask] = useState<string>("30");
   const [hourlyRate, setHourlyRate] = useState<string>("50");
-  const [hoursPerWeek, setHoursPerWeek] = useState<string>("20");
-  const [efficiency, setEfficiency] = useState<string>("70");
   const [showResults, setShowResults] = useState(false);
 
   const calculateSavings = () => {
     const rate = parseFloat(hourlyRate) || 0;
-    const hours = parseFloat(hoursPerWeek) || 0;
-    const effPercent = parseFloat(efficiency) || 0;
-
-    const weeklyManualCost = rate * hours;
-    const monthlyCost = weeklyManualCost * 4.33;
+    const frequency = parseFloat(timesPerWeek) || 0;
+    const minutes = parseFloat(timePerTask) || 0;
+    
+    const hoursPerTask = minutes / 60;
+    const costPerTask = hoursPerTask * rate;
+    const weeklyCost = costPerTask * frequency;
+    const monthlyCost = weeklyCost * 4.33;
     const annualCost = monthlyCost * 12;
 
-    const monthlySavings = monthlyCost * (effPercent / 100);
-    const annualSavings = annualCost * (effPercent / 100);
+    // Assuming 70% automation efficiency
+    const annualSavings = annualCost * 0.7;
+    const monthlySavings = annualSavings / 12;
+    
+    // Installation cost is 50% of annual cost
+    const installationCost = annualCost * 0.5;
 
     return {
       monthlyCost: monthlyCost.toFixed(0),
       annualCost: annualCost.toFixed(0),
       monthlySavings: monthlySavings.toFixed(0),
       annualSavings: annualSavings.toFixed(0),
+      installationCost: installationCost.toFixed(0),
     };
   };
 
@@ -41,53 +49,67 @@ export const ROICalculator = () => {
             ROI Calculator
           </CardTitle>
           <CardDescription className="text-base">
-            Discover how much you could save with AI automation
+            Calculate savings by automating a single repetitive task
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="hourlyRate">Hourly Rate ($)</Label>
+              <Label htmlFor="taskDescription">Task Description (Optional)</Label>
               <Input
-                id="hourlyRate"
-                type="number"
-                value={hourlyRate}
-                onChange={(e) => {
-                  setHourlyRate(e.target.value);
-                  setShowResults(false);
-                }}
-                placeholder="50"
+                id="taskDescription"
+                type="text"
+                value={taskDescription}
+                onChange={(e) => setTaskDescription(e.target.value)}
+                placeholder="e.g., Data entry from emails to spreadsheet"
                 className="bg-secondary/50"
               />
+              <p className="text-xs text-muted-foreground">Help us understand your automation needs better</p>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="hoursPerWeek">Hours per Week</Label>
-              <Input
-                id="hoursPerWeek"
-                type="number"
-                value={hoursPerWeek}
-                onChange={(e) => {
-                  setHoursPerWeek(e.target.value);
-                  setShowResults(false);
-                }}
-                placeholder="20"
-                className="bg-secondary/50"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="efficiency">Automation Efficiency (%)</Label>
-              <Input
-                id="efficiency"
-                type="number"
-                value={efficiency}
-                onChange={(e) => {
-                  setEfficiency(e.target.value);
-                  setShowResults(false);
-                }}
-                placeholder="70"
-                max="100"
-                className="bg-secondary/50"
-              />
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="timesPerWeek">Task Frequency (per week)</Label>
+                <Input
+                  id="timesPerWeek"
+                  type="number"
+                  value={timesPerWeek}
+                  onChange={(e) => {
+                    setTimesPerWeek(e.target.value);
+                    setShowResults(false);
+                  }}
+                  placeholder="10"
+                  className="bg-secondary/50"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="timePerTask">Time per Task (minutes)</Label>
+                <Input
+                  id="timePerTask"
+                  type="number"
+                  value={timePerTask}
+                  onChange={(e) => {
+                    setTimePerTask(e.target.value);
+                    setShowResults(false);
+                  }}
+                  placeholder="30"
+                  className="bg-secondary/50"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="hourlyRate">Hourly Rate ($)</Label>
+                <Input
+                  id="hourlyRate"
+                  type="number"
+                  value={hourlyRate}
+                  onChange={(e) => {
+                    setHourlyRate(e.target.value);
+                    setShowResults(false);
+                  }}
+                  placeholder="50"
+                  className="bg-secondary/50"
+                />
+              </div>
             </div>
           </div>
 
@@ -101,34 +123,66 @@ export const ROICalculator = () => {
           </Button>
 
           {showResults && (
-            <div className="grid md:grid-cols-2 gap-4 animate-fade-in-up">
-              <Card className="bg-secondary/50 border-primary/20">
-                <CardHeader className="pb-3">
-                  <CardDescription>Monthly Savings</CardDescription>
-                  <CardTitle className="text-4xl font-bold text-primary">
-                    ${results.monthlySavings}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Current monthly cost: ${results.monthlyCost}
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="space-y-4 animate-fade-in-up">
+              <div className="grid md:grid-cols-2 gap-4">
+                <Card className="bg-secondary/50 border-primary/20">
+                  <CardHeader className="pb-3">
+                    <CardDescription>Current Annual Cost</CardDescription>
+                    <CardTitle className="text-4xl font-bold text-foreground">
+                      ${results.annualCost}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      Monthly: ${results.monthlyCost}
+                    </p>
+                  </CardContent>
+                </Card>
 
-              <Card className="bg-secondary/50 border-primary/20">
-                <CardHeader className="pb-3">
-                  <CardDescription>Annual Savings</CardDescription>
-                  <CardTitle className="text-4xl font-bold text-primary">
-                    ${results.annualSavings}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    Current annual cost: ${results.annualCost}
-                  </p>
-                </CardContent>
-              </Card>
+                <Card className="bg-secondary/50 border-primary/20">
+                  <CardHeader className="pb-3">
+                    <CardDescription>Installation Investment</CardDescription>
+                    <CardTitle className="text-4xl font-bold text-foreground">
+                      ${results.installationCost}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      One-time setup cost
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <Card className="bg-primary/10 border-primary/30">
+                  <CardHeader className="pb-3">
+                    <CardDescription>Monthly Savings</CardDescription>
+                    <CardTitle className="text-4xl font-bold text-primary">
+                      ${results.monthlySavings}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      After automation
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-primary/10 border-primary/30">
+                  <CardHeader className="pb-3">
+                    <CardDescription>Annual Savings</CardDescription>
+                    <CardTitle className="text-4xl font-bold text-primary">
+                      ${results.annualSavings}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      ROI in {(parseFloat(results.installationCost) / parseFloat(results.annualSavings) * 12).toFixed(1)} months
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
 
               <div className="md:col-span-2">
                 <Button asChild className="w-full text-lg py-6" size="lg">
