@@ -27,8 +27,8 @@ export const ROICalculator = () => {
     const automationCost = monthlyCost * 0.5;
     
     // Assuming 70% automation efficiency
-    const monthlySavingsBeforeCost = monthlyCost * 0.7;
-    const annualSavingsBeforeCost = annualCost * 0.7;
+    const monthlySavingsBeforeCost = monthlyCost * 0.5;
+    const annualSavingsBeforeCost = annualCost * 0.5;
     
     // Net savings after amortizing automation cost over 12 months
     const monthlySavings = monthlySavingsBeforeCost - (automationCost / 12);
