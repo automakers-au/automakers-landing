@@ -7,35 +7,36 @@ import { TrendingUp } from "lucide-react";
 
 export const ROICalculator = () => {
   const [taskDescription, setTaskDescription] = useState<string>("");
-  const [timesPerWeek, setTimesPerWeek] = useState<string>("10");
+  const [timesPerDay, setTimesPerDay] = useState<string>("5");
   const [timePerTask, setTimePerTask] = useState<string>("30");
   const [hourlyRate, setHourlyRate] = useState<string>("50");
   const [showResults, setShowResults] = useState(false);
 
   const calculateSavings = () => {
     const rate = parseFloat(hourlyRate) || 0;
-    const frequency = parseFloat(timesPerWeek) || 0;
+    const frequency = parseFloat(timesPerDay) || 0;
     const minutes = parseFloat(timePerTask) || 0;
     
     const hoursPerTask = minutes / 60;
     const costPerTask = hoursPerTask * rate;
-    const weeklyCost = costPerTask * frequency;
-    const monthlyCost = weeklyCost * 4.33;
+    const dailyCost = costPerTask * frequency;
+    const monthlyCost = dailyCost * 21.67; // Average working days per month
     const annualCost = monthlyCost * 12;
 
-    // Assuming 70% automation efficiency
-    const annualSavings = annualCost * 0.7;
-    const monthlySavings = annualSavings / 12;
+    // Automation cost is 50% of monthly cost
+    const automationCost = monthlyCost * 0.5;
     
-    // Installation cost is 50% of annual cost
-    const installationCost = annualCost * 0.5;
+    // Assuming 70% automation efficiency
+    const monthlySavingsBeforeCost = monthlyCost * 0.7;
+    const annualSavingsBeforeCost = annualCost * 0.7;
+    
+    // Net savings after amortizing automation cost over 12 months
+    const monthlySavings = monthlySavingsBeforeCost - (automationCost / 12);
+    const annualSavings = annualSavingsBeforeCost - automationCost;
 
     return {
-      monthlyCost: monthlyCost.toFixed(0),
-      annualCost: annualCost.toFixed(0),
       monthlySavings: monthlySavings.toFixed(0),
       annualSavings: annualSavings.toFixed(0),
-      installationCost: installationCost.toFixed(0),
     };
   };
 
@@ -69,16 +70,16 @@ export const ROICalculator = () => {
 
             <div className="grid md:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="timesPerWeek">Task Frequency (per week)</Label>
+                <Label htmlFor="timesPerDay">Task Frequency (per day)</Label>
                 <Input
-                  id="timesPerWeek"
+                  id="timesPerDay"
                   type="number"
-                  value={timesPerWeek}
+                  value={timesPerDay}
                   onChange={(e) => {
-                    setTimesPerWeek(e.target.value);
+                    setTimesPerDay(e.target.value);
                     setShowResults(false);
                   }}
-                  placeholder="10"
+                  placeholder="5"
                   className="bg-secondary/50"
                 />
               </div>
@@ -125,60 +126,30 @@ export const ROICalculator = () => {
           {showResults && (
             <div className="space-y-4 animate-fade-in-up">
               <div className="grid md:grid-cols-2 gap-4">
-                <Card className="bg-secondary/50 border-primary/20">
-                  <CardHeader className="pb-3">
-                    <CardDescription>Current Annual Cost</CardDescription>
-                    <CardTitle className="text-4xl font-bold text-foreground">
-                      ${results.annualCost}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      Monthly: ${results.monthlyCost}
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-secondary/50 border-primary/20">
-                  <CardHeader className="pb-3">
-                    <CardDescription>Installation Investment</CardDescription>
-                    <CardTitle className="text-4xl font-bold text-foreground">
-                      ${results.installationCost}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      One-time setup cost
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
                 <Card className="bg-primary/10 border-primary/30">
                   <CardHeader className="pb-3">
-                    <CardDescription>Monthly Savings</CardDescription>
+                    <CardDescription>Net Monthly Savings</CardDescription>
                     <CardTitle className="text-4xl font-bold text-primary">
                       ${results.monthlySavings}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
-                      After automation
+                      After automation costs
                     </p>
                   </CardContent>
                 </Card>
 
                 <Card className="bg-primary/10 border-primary/30">
                   <CardHeader className="pb-3">
-                    <CardDescription>Annual Savings</CardDescription>
+                    <CardDescription>Net Annual Savings</CardDescription>
                     <CardTitle className="text-4xl font-bold text-primary">
                       ${results.annualSavings}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
-                      ROI in {(parseFloat(results.installationCost) / parseFloat(results.annualSavings) * 12).toFixed(1)} months
+                      First year savings included
                     </p>
                   </CardContent>
                 </Card>
