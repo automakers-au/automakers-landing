@@ -23,10 +23,15 @@ export const ROICalculator = () => {
     const monthlyCost = dailyCost * 21.67; // Average working days per month
     const annualCost = monthlyCost * 12;
 
+    // Time calculations
+    const dailyHours = hoursPerTask * frequency;
+    const monthlyHours = dailyHours * 21.67;
+    const annualHours = monthlyHours * 12;
+
     // Automation cost is 50% of monthly cost
     const automationCost = monthlyCost * 0.5;
     
-    // Assuming 70% automation efficiency
+    // Assuming 50% automation efficiency for both time and cost
     const monthlySavingsBeforeCost = monthlyCost * 0.5;
     const annualSavingsBeforeCost = annualCost * 0.5;
     
@@ -34,9 +39,15 @@ export const ROICalculator = () => {
     const monthlySavings = monthlySavingsBeforeCost - (automationCost / 12);
     const annualSavings = annualSavingsBeforeCost - automationCost;
 
+    // Time saved (50% of total time)
+    const monthlyTimeSaved = monthlyHours * 0.5;
+    const annualTimeSaved = annualHours * 0.5;
+
     return {
       monthlySavings: monthlySavings.toFixed(0),
       annualSavings: annualSavings.toFixed(0),
+      monthlyTimeSaved: monthlyTimeSaved.toFixed(1),
+      annualTimeSaved: annualTimeSaved.toFixed(0),
     };
   };
 
@@ -150,6 +161,34 @@ export const ROICalculator = () => {
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
                       First year savings included
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-secondary/50 border-secondary">
+                  <CardHeader className="pb-3">
+                    <CardDescription>Monthly Time Saved</CardDescription>
+                    <CardTitle className="text-4xl font-bold text-foreground">
+                      {results.monthlyTimeSaved} hrs
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      Hours freed up each month
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-secondary/50 border-secondary">
+                  <CardHeader className="pb-3">
+                    <CardDescription>Annual Time Saved</CardDescription>
+                    <CardTitle className="text-4xl font-bold text-foreground">
+                      {results.annualTimeSaved} hrs
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      Hours reclaimed per year
                     </p>
                   </CardContent>
                 </Card>
