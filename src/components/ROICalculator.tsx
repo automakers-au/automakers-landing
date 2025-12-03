@@ -165,32 +165,22 @@ export const ROICalculator = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-secondary/50 border-secondary">
-                  <CardHeader className="pb-3">
-                    <CardDescription>Monthly Time Saved</CardDescription>
-                    <CardTitle className="text-4xl font-bold text-foreground">
+                <Card className="bg-secondary/30 border-secondary/50">
+                  <CardHeader className="pb-2 pt-4 px-4">
+                    <CardDescription className="text-xs">Monthly Time Saved</CardDescription>
+                    <CardTitle className="text-2xl font-bold text-foreground">
                       {results.monthlyTimeSaved} hrs
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      Hours freed up each month
-                    </p>
-                  </CardContent>
                 </Card>
 
-                <Card className="bg-secondary/50 border-secondary">
-                  <CardHeader className="pb-3">
-                    <CardDescription>Annual Time Saved</CardDescription>
-                    <CardTitle className="text-4xl font-bold text-foreground">
+                <Card className="bg-secondary/30 border-secondary/50">
+                  <CardHeader className="pb-2 pt-4 px-4">
+                    <CardDescription className="text-xs">Annual Time Saved</CardDescription>
+                    <CardTitle className="text-2xl font-bold text-foreground">
                       {results.annualTimeSaved} hrs
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      Hours reclaimed per year
-                    </p>
-                  </CardContent>
                 </Card>
               </div>
 
