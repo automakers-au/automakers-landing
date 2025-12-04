@@ -17,10 +17,14 @@ import {
   Instagram,
   Phone,
   MapPin,
+  Menu,
+  X,
+  Bot,
 } from "lucide-react";
 
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +39,7 @@ const Index = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+    setMobileMenuOpen(false);
   };
 
   const scrollToTop = () => {
@@ -169,24 +174,27 @@ const Index = () => {
     },
   ];
 
+  const TYPEFORM_URL = "https://form.typeform.com/to/Tw2sG6yF";
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Sticky Navigation */}
-      <nav className="fixed top-0 w-full z-50 px-4 pt-4">
+      <nav className="fixed top-0 w-full z-50 px-3 sm:px-4 pt-3 sm:pt-4">
         <div
-          className={`container mx-auto rounded-2xl transition-all duration-300 ${
+          className={`container mx-auto rounded-xl sm:rounded-2xl transition-all duration-300 ${
             scrolled ? "bg-background/70 backdrop-blur-lg border border-border shadow-lg" : "bg-background/30 backdrop-blur-md"
           }`}
         >
-          <div className="px-6 py-4 flex items-center justify-between">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
             <button 
               onClick={scrollToTop}
-              className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+              className="text-xl sm:text-2xl font-bold tracking-wider uppercase bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent hover:opacity-80 transition-opacity"
             >
-              Automakers
+              AUTOMAKERS
             </button>
 
-            <div className="hidden md:flex items-center gap-6">
+            {/* Desktop Nav */}
+            <div className="hidden lg:flex items-center gap-6">
               <button onClick={() => scrollToSection("home")} className="hover:text-primary transition-colors">
                 Home
               </button>
@@ -206,54 +214,94 @@ const Index = () => {
                 Pricing
               </button>
 
-              <Button asChild className="animate-glow">
-                <a href="https://tally.so/r/wzparq" target="_blank" rel="noopener noreferrer">
+              <Button asChild className="animate-glow bg-gradient-to-r from-primary to-accent hover:opacity-90">
+                <a href={TYPEFORM_URL} target="_blank" rel="noopener noreferrer">
                   Get Started
                 </a>
               </Button>
             </div>
 
-            <Button asChild className="md:hidden">
-              <a href="https://tally.so/r/wzparq" target="_blank" rel="noopener noreferrer">
-                Get Started
-              </a>
-            </Button>
+            {/* Mobile Menu Button */}
+            <button 
+              className="lg:hidden p-2"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="lg:hidden px-4 pb-4 border-t border-border/50 animate-fade-in">
+              <div className="flex flex-col gap-3 pt-4">
+                <button onClick={() => scrollToSection("home")} className="text-left py-2 hover:text-primary transition-colors">
+                  Home
+                </button>
+                <button onClick={() => scrollToSection("services")} className="text-left py-2 hover:text-primary transition-colors">
+                  Services
+                </button>
+                <button onClick={() => scrollToSection("testimonials")} className="text-left py-2 hover:text-primary transition-colors">
+                  Testimonials
+                </button>
+                <button onClick={() => scrollToSection("faq")} className="text-left py-2 hover:text-primary transition-colors">
+                  FAQ
+                </button>
+                <button onClick={() => scrollToSection("calculator")} className="text-left py-2 hover:text-primary transition-colors">
+                  Calculator
+                </button>
+                <button onClick={() => scrollToSection("pricing")} className="text-left py-2 hover:text-primary transition-colors">
+                  Pricing
+                </button>
+                <Button asChild className="mt-2 bg-gradient-to-r from-primary to-accent">
+                  <a href={TYPEFORM_URL} target="_blank" rel="noopener noreferrer">
+                    Get Started
+                  </a>
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-40 pb-20 px-4">
+      <section id="home" className="pt-32 sm:pt-40 pb-16 sm:pb-20 px-4 sm:px-6">
         <div className="container mx-auto text-center">
-          <div className="mb-4 text-primary text-sm font-semibold tracking-wider uppercase animate-fade-in">
+          <div className="mb-4 text-primary text-xs sm:text-sm font-semibold tracking-wider uppercase animate-fade-in">
             AI Process Automation for Perth Small Businesses
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-            <span className="bg-gradient-to-r from-primary via-primary-glow to-primary bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent">
-              Save 5-10 Hours Weekly
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold mb-6 animate-fade-in leading-tight">
+            <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent">
+              Automakers: AI Automations
             </span>
             <br />
-            <span className="text-foreground">with Workflow Automation</span>
+            <span className="text-foreground text-2xl sm:text-4xl lg:text-5xl">for Perth SMEs that Save Hours and Money</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto animate-fade-in">
-            Perth-based AI automation specialists helping SMEs reduce manual work, cut costs by 20-40%, and scale operations with packaged solutions that deliver measurable results.
+          <p className="text-base sm:text-xl lg:text-2xl text-muted-foreground mb-4 max-w-3xl mx-auto animate-fade-in px-2">
+            Save hours, fewer manual tasks, local support in WA.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 animate-fade-in">
-            <Button asChild size="lg" className="text-lg px-8 py-6 animate-glow">
-              <a href="https://tally.so/r/wzparq" target="_blank" rel="noopener noreferrer">
-                Book Free Discovery Call
-              </a>
+          <p className="text-sm sm:text-base text-golden font-medium mb-8 max-w-2xl mx-auto animate-fade-in px-2">
+            ✨ Free service in the initial phase. If you are satisfied with the result, then we charge you.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 animate-fade-in px-2">
+            <Button 
+              size="lg" 
+              className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 animate-glow bg-gradient-to-r from-primary to-accent hover:opacity-90"
+              onClick={() => scrollToSection("calculator")}
+            >
+              Calculate Your Savings with AutoMake
             </Button>
-            <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6">
-              <a onClick={() => scrollToSection("calculator")}>
-                Calculate Your Savings
+            <Button asChild size="lg" variant="outline" className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 border-primary/50 hover:bg-primary/10">
+              <a href={TYPEFORM_URL} target="_blank" rel="noopener noreferrer">
+                Start Your Automation Journey
               </a>
             </Button>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground animate-fade-in">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-muted-foreground animate-fade-in px-2">
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-primary" />
               <span>Perth, Western Australia</span>
@@ -270,18 +318,30 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Mascot Placeholder Section */}
+      <section className="py-12 sm:py-16 px-4">
+        <div className="container mx-auto">
+          <div className="max-w-md mx-auto text-center">
+            <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-primary/30 flex items-center justify-center animate-pulse">
+              <Bot className="w-16 h-16 sm:w-20 sm:h-20 text-primary" />
+            </div>
+            <p className="text-sm text-muted-foreground">Meet our friendly AI assistant</p>
+          </div>
+        </div>
+      </section>
+
       {/* Video Section */}
-      <section className="py-20 px-4 bg-secondary/30">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-secondary/30">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">See Automakers in Action</h2>
-            <p className="text-lg text-muted-foreground mb-8">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">See Automakers in Action</h2>
+            <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 px-2">
               Discover how we help businesses like yours automate processes and achieve remarkable results.
             </p>
             <div className="aspect-video bg-card rounded-lg border border-border flex items-center justify-center">
               <div className="text-center">
-                <Sparkles className="w-16 h-16 mx-auto mb-4 text-primary" />
-                <p className="text-muted-foreground">Video demo coming soon</p>
+                <Sparkles className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 text-primary" />
+                <p className="text-muted-foreground text-sm sm:text-base">Video demo coming soon</p>
               </div>
             </div>
           </div>
@@ -289,29 +349,29 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-4">
+      <section id="services" className="py-16 sm:py-20 px-4 sm:px-6">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">AI Automation Services for Perth SMEs</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 px-2">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4">AI Automation Services for Perth SMEs</h2>
+            <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto">
               Packaged solutions designed for measurable results. No hourly rates - just clear deliverables and transparent pricing.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
             {services.map((service, index) => (
               <Card
                 key={index}
                 className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 bg-card/50 backdrop-blur-sm"
               >
-                <CardHeader>
-                  <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <service.icon className="w-7 h-7 text-primary" />
+                <CardHeader className="p-4 sm:p-6">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-3 sm:mb-4 group-hover:from-primary/30 group-hover:to-accent/30 transition-colors">
+                    <service.icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
                   </div>
-                  <CardTitle className="text-2xl">{service.title}</CardTitle>
+                  <CardTitle className="text-xl sm:text-2xl">{service.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{service.description}</CardDescription>
+                <CardContent className="px-4 sm:px-6 pb-4 sm:pb-6">
+                  <CardDescription className="text-sm sm:text-base">{service.description}</CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -320,27 +380,27 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 px-4 bg-secondary/30">
+      <section id="testimonials" className="py-16 sm:py-20 px-4 sm:px-6 bg-secondary/30">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
-            <p className="text-xl text-muted-foreground">Real results from real businesses</p>
+          <div className="text-center mb-12 sm:mb-16 px-2">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4">What Our Clients Say</h2>
+            <p className="text-base sm:text-xl text-muted-foreground">Real results from real businesses</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="bg-card/50 backdrop-blur-sm border-primary/20">
-                <CardHeader>
+                <CardHeader className="p-4 sm:p-6">
                   <div className="flex gap-1 mb-2">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                      <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-golden text-golden" />
                     ))}
                   </div>
-                  <CardDescription className="text-base italic">"{testimonial.content}"</CardDescription>
+                  <CardDescription className="text-sm sm:text-base italic">"{testimonial.content}"</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <p className="font-semibold text-foreground">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                <CardContent className="px-4 sm:px-6 pb-4 sm:pb-6">
+                  <p className="font-semibold text-foreground text-sm sm:text-base">{testimonial.name}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{testimonial.role}</p>
                 </CardContent>
               </Card>
             ))}
@@ -349,11 +409,11 @@ const Index = () => {
       </section>
 
       {/* ROI Calculator Section */}
-      <section id="calculator" className="py-20 px-4">
+      <section id="calculator" className="py-16 sm:py-20 px-4 sm:px-6">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Calculate Your Savings</h2>
-            <p className="text-xl text-muted-foreground">See how much AI automation could save your business</p>
+          <div className="text-center mb-12 sm:mb-16 px-2">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4">Calculate Your Savings</h2>
+            <p className="text-base sm:text-xl text-muted-foreground">See how much AI automation could save your business</p>
           </div>
 
           <ROICalculator />
@@ -361,20 +421,20 @@ const Index = () => {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-20 px-4 bg-secondary/30">
+      <section id="faq" className="py-16 sm:py-20 px-4 sm:px-6 bg-secondary/30">
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">AI Automation FAQ for Perth Businesses</h2>
-            <p className="text-xl text-muted-foreground">Common questions about workflow automation, implementation, and business process optimization</p>
+          <div className="text-center mb-12 sm:mb-16 px-2">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4">AI Automation FAQ for Perth Businesses</h2>
+            <p className="text-base sm:text-xl text-muted-foreground">Common questions about workflow automation, implementation, and business process optimization</p>
           </div>
 
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="bg-card/50 backdrop-blur-sm border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-lg font-semibold hover:text-primary">
+              <AccordionItem key={index} value={`item-${index}`} className="bg-card/50 backdrop-blur-sm border border-border rounded-lg px-4 sm:px-6">
+                <AccordionTrigger className="text-sm sm:text-lg font-semibold hover:text-primary text-left">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
+                <AccordionContent className="text-sm sm:text-base text-muted-foreground">{faq.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
@@ -382,48 +442,48 @@ const Index = () => {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 px-4">
+      <section id="pricing" className="py-16 sm:py-20 px-4 sm:px-6">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Clear Packages, Measurable Results</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 px-2">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4">Clear Packages, Measurable Results</h2>
+            <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto">
               No hourly rates. Straightforward packages with defined deliverables and transparent pricing for Perth businesses.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
             {pricingPlans.map((plan, index) => (
               <Card
                 key={index}
                 className={`relative ${
                   plan.popular
-                    ? "border-primary shadow-lg shadow-primary/20 scale-105"
+                    ? "border-primary shadow-lg shadow-primary/20 sm:scale-105"
                     : "border-border"
                 } bg-card/50 backdrop-blur-sm`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold">
+                  <div className="absolute -top-3 sm:-top-4 left-1/2 -translate-x-1/2">
+                    <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap">
                       Most Popular
                     </span>
                   </div>
                 )}
 
-                <CardHeader>
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                  <CardDescription>{plan.description}</CardDescription>
+                <CardHeader className="p-4 sm:p-6">
+                  <CardTitle className="text-xl sm:text-2xl">{plan.name}</CardTitle>
+                  <CardDescription className="text-sm sm:text-base">{plan.description}</CardDescription>
                   <div className="mt-4">
-                    <span className="text-4xl font-bold text-primary">{plan.price}</span>
-                    {plan.period !== "quote" && <span className="text-muted-foreground"> / {plan.period}</span>}
+                    <span className="text-3xl sm:text-4xl font-bold text-primary">{plan.price}</span>
+                    {plan.period !== "quote" && <span className="text-muted-foreground text-sm sm:text-base"> / {plan.period}</span>}
                   </div>
                 </CardHeader>
 
-                <CardContent className="space-y-4">
-                  <ul className="space-y-3">
+                <CardContent className="space-y-4 px-4 sm:px-6 pb-4 sm:pb-6">
+                  <ul className="space-y-2 sm:space-y-3">
                     {plan.features.map((feature, fIndex) => (
                       <li key={fIndex} className="flex items-start gap-2">
-                        <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                        <span className="text-sm">{feature}</span>
+                        <Check className="w-4 h-4 sm:w-5 sm:h-5 text-primary shrink-0 mt-0.5" />
+                        <span className="text-xs sm:text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -431,10 +491,10 @@ const Index = () => {
                   <Button
                     asChild
                     variant={plan.popular ? "default" : "outline"}
-                    className="w-full"
+                    className={`w-full ${plan.popular ? "bg-gradient-to-r from-primary to-accent hover:opacity-90" : "border-primary/50 hover:bg-primary/10"}`}
                     size="lg"
                   >
-                    <a href="https://tally.so/r/wzparq" target="_blank" rel="noopener noreferrer">
+                    <a href={TYPEFORM_URL} target="_blank" rel="noopener noreferrer">
                       {plan.period === "quote" ? "Contact Sales" : "Get Started"}
                     </a>
                   </Button>
@@ -445,20 +505,35 @@ const Index = () => {
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-r from-primary/10 to-accent/10">
+        <div className="container mx-auto text-center">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">Ready to Automate Your Business?</h2>
+          <p className="text-base sm:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
+            Apply for a credit review or savings analysis. Let's discover how much time and money you can save.
+          </p>
+          <Button asChild size="lg" className="text-base sm:text-lg px-8 py-6 bg-gradient-to-r from-primary to-accent hover:opacity-90 animate-glow">
+            <a href={TYPEFORM_URL} target="_blank" rel="noopener noreferrer">
+              Start Your Automation Journey
+            </a>
+          </Button>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-secondary/50 border-t border-border py-12 px-4">
+      <footer className="bg-secondary/50 border-t border-border py-10 sm:py-12 px-4 sm:px-6">
         <div className="container mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-                Automakers
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 tracking-wider uppercase bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+                AUTOMAKERS
               </h3>
-              <p className="text-muted-foreground">Transforming businesses with intelligent AI automation solutions.</p>
+              <p className="text-sm sm:text-base text-muted-foreground">Transforming businesses with intelligent AI automation solutions.</p>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-muted-foreground">
+              <h4 className="font-semibold mb-4 text-sm sm:text-base">Quick Links</h4>
+              <ul className="space-y-2 text-muted-foreground text-sm sm:text-base">
                 <li>
                   <button onClick={() => scrollToSection("services")} className="hover:text-primary transition-colors">
                     Services
@@ -478,51 +553,51 @@ const Index = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Contact</h4>
-              <ul className="space-y-2 text-muted-foreground">
+              <h4 className="font-semibold mb-4 text-sm sm:text-base">Contact</h4>
+              <ul className="space-y-2 text-muted-foreground text-sm sm:text-base">
                 <li className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  <span>contact@automakers.com.au</span>
+                  <Mail className="w-4 h-4 shrink-0" />
+                  <span className="break-all">contact@automakers.com.au</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
+                  <Phone className="w-4 h-4 shrink-0" />
                   <span>+61 (08) 9XXX XXXX</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
+                  <MapPin className="w-4 h-4 shrink-0" />
                   <span>Perth, WA</span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Follow Us</h4>
+              <h4 className="font-semibold mb-4 text-sm sm:text-base">Follow Us</h4>
               <div className="flex gap-4">
                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Linkedin className="w-6 h-6" />
+                  <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Twitter className="w-6 h-6" />
+                  <Twitter className="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Facebook className="w-6 h-6" />
+                  <Facebook className="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Instagram className="w-6 h-6" />
+                  <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-muted-foreground text-sm">
+          <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-muted-foreground text-xs sm:text-sm text-center sm:text-left">
               © 2024 Automakers. All rights reserved. | Privacy Policy | Terms of Service
             </p>
             <Button
               onClick={scrollToTop}
               variant="outline"
               size="icon"
-              className="rounded-full animate-glow"
+              className="rounded-full border-primary/50 hover:bg-primary/10"
             >
               <ArrowUp className="w-4 h-4" />
             </Button>
