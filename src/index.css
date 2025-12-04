@@ -8,92 +8,95 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 220 15% 8%;
-    --foreground: 0 0% 98%;
+    /* New Automakers palette */
+    --background: 210 100% 18%; /* Dark Navy Blue #002E5D */
+    --foreground: 220 14% 96%; /* Light neutral #F4F5F7 */
 
-    --card: 220 15% 12%;
-    --card-foreground: 0 0% 98%;
+    --card: 210 80% 14%;
+    --card-foreground: 220 14% 96%;
 
-    --popover: 220 15% 12%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 210 80% 14%;
+    --popover-foreground: 220 14% 96%;
 
-    --primary: 180 85% 50%;
-    --primary-foreground: 220 15% 8%;
+    --primary: 171 100% 39%; /* Cyan #00C6AE */
+    --primary-foreground: 210 100% 18%;
 
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 210 60% 22%;
+    --secondary-foreground: 220 14% 96%;
 
-    --muted: 220 15% 20%;
-    --muted-foreground: 215 10% 60%;
+    --muted: 210 50% 28%;
+    --muted-foreground: 210 20% 60%;
 
-    --accent: 180 85% 50%;
-    --accent-foreground: 220 15% 8%;
+    --accent: 280 70% 60%; /* Purple/Violet accent */
+    --accent-foreground: 220 14% 96%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 220 14% 96%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 180 85% 50%;
+    --border: 210 50% 25%;
+    --input: 210 50% 25%;
+    --ring: 171 100% 39%;
 
     --radius: 0.75rem;
 
     /* Custom colors for Automakers */
-    --primary-glow: 180 85% 60%;
-    --gradient-start: 180 85% 50%;
-    --gradient-end: 200 80% 55%;
+    --primary-glow: 171 100% 50%;
+    --gradient-start: 171 100% 39%;
+    --gradient-end: 280 70% 60%;
+    --golden: 42 100% 67%; /* Golden accent #FFC857 */
     
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 210 80% 12%;
+    --sidebar-foreground: 220 14% 96%;
+    --sidebar-primary: 171 100% 39%;
+    --sidebar-primary-foreground: 210 100% 18%;
+    --sidebar-accent: 210 50% 20%;
+    --sidebar-accent-foreground: 220 14% 96%;
+    --sidebar-border: 210 50% 25%;
+    --sidebar-ring: 171 100% 39%;
   }
 
   .dark {
-    --background: 220 15% 8%;
-    --foreground: 0 0% 98%;
+    --background: 210 100% 18%;
+    --foreground: 220 14% 96%;
 
-    --card: 220 15% 12%;
-    --card-foreground: 0 0% 98%;
+    --card: 210 80% 14%;
+    --card-foreground: 220 14% 96%;
 
-    --popover: 220 15% 12%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 210 80% 14%;
+    --popover-foreground: 220 14% 96%;
 
-    --primary: 180 85% 50%;
-    --primary-foreground: 220 15% 8%;
+    --primary: 171 100% 39%;
+    --primary-foreground: 210 100% 18%;
 
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 210 60% 22%;
+    --secondary-foreground: 220 14% 96%;
 
-    --muted: 220 15% 20%;
-    --muted-foreground: 215 10% 60%;
+    --muted: 210 50% 28%;
+    --muted-foreground: 210 20% 60%;
 
-    --accent: 180 85% 50%;
-    --accent-foreground: 220 15% 8%;
+    --accent: 280 70% 60%;
+    --accent-foreground: 220 14% 96%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 220 14% 96%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 180 85% 50%;
+    --border: 210 50% 25%;
+    --input: 210 50% 25%;
+    --ring: 171 100% 39%;
     
-    --primary-glow: 180 85% 60%;
-    --gradient-start: 180 85% 50%;
-    --gradient-end: 200 80% 55%;
+    --primary-glow: 171 100% 50%;
+    --gradient-start: 171 100% 39%;
+    --gradient-end: 280 70% 60%;
+    --golden: 42 100% 67%;
     
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 210 80% 12%;
+    --sidebar-foreground: 220 14% 96%;
+    --sidebar-primary: 171 100% 39%;
+    --sidebar-primary-foreground: 210 100% 18%;
+    --sidebar-accent: 210 50% 20%;
+    --sidebar-accent-foreground: 220 14% 96%;
+    --sidebar-border: 210 50% 25%;
+    --sidebar-ring: 171 100% 39%;
   }
 }
 
@@ -104,5 +107,18 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent;
+  }
+  
+  .gradient-border {
+    @apply relative;
+    background: linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
+                linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))) border-box;
+    border: 1px solid transparent;
   }
 }

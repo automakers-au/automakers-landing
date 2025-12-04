@@ -185,8 +185,8 @@ export const ROICalculator = () => {
               </div>
 
               <div className="md:col-span-2">
-                <Button asChild className="w-full text-lg py-6" size="lg">
-                  <a href="https://tally.so/r/wzparq" target="_blank" rel="noopener noreferrer">
+                <Button asChild className="w-full text-base sm:text-lg py-5 sm:py-6 bg-gradient-to-r from-primary to-accent hover:opacity-90" size="lg">
+                  <a href="https://form.typeform.com/to/Tw2sG6yF" target="_blank" rel="noopener noreferrer">
                     Get Started - Book Your Consultation
                   </a>
                 </Button>
