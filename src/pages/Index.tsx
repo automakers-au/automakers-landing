@@ -30,7 +30,7 @@ const Index = () => {
       setScrolled(window.scrollY > 50);
       setScrollY(window.scrollY);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -263,12 +263,13 @@ const Index = () => {
       </nav>
 
       {/* Hero Section with Background Video */}
-      <section id="home" className="relative min-h-screen pt-32 sm:pt-40 pb-16 sm:pb-20 px-4 sm:px-6 flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative min-h-[68vh] sm:min-h-screen pt-20 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 flex items-center justify-center overflow-hidden">
         {/* Background Video with Parallax */}
         <div className="absolute inset-0 w-full h-full">
           <div
             style={{
-              transform: `translateY(${scrollY * 0.5}px)`,
+              // reduce parallax on small screens for performance and visual stability
+              transform: `translateY(${scrollY * (typeof window !== 'undefined' && window.innerWidth < 640 ? 0.15 : 0.5)}px)`,
             }}
             className="w-full h-full"
           >
@@ -282,40 +283,40 @@ const Index = () => {
               <source src="/assets/landing-video.mp4" type="video/mp4" />
             </video>
           </div>
-          {/* Dark overlay - lighter black */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+          {/* Lighter black overlay with subtle blur to keep content readable but allow video visibility */}
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
         </div>
 
         {/* Content */}
         <div className="relative z-10 container mx-auto text-center">
-          <div className="mb-4 text-primary text-xs sm:text-sm font-semibold tracking-wider uppercase animate-fade-in">
+          <div className="mb-3 text-primary text-xs sm:text-sm font-semibold tracking-wider uppercase animate-fade-in">
             AI Process Automation for Small Businesses
           </div>
-          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold mb-6 animate-fade-in leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-5 animate-fade-in leading-tight">
             <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-[length:200%_auto] animate-gradient bg-clip-text text-transparent">
               Automakers: AI Automations
             </span>
             <br />
-            <span className="text-foreground text-2xl sm:text-4xl lg:text-5xl">for SMEs that Save Hours and Money</span>
+            <span className="text-foreground text-xl sm:text-3xl lg:text-4xl">for SMEs that Save Hours and Money</span>
           </h1>
 
-          <p className="text-base sm:text-xl lg:text-2xl text-muted-foreground mb-4 max-w-3xl mx-auto animate-fade-in px-2">
-            Save hours, fewer manual tasks, local support in WA.
+          <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-3 max-w-3xl mx-auto animate-fade-in px-2 leading-relaxed">
+            Save hours, fewer manual tasks, local support for small businesses.
           </p>
 
-          <p className="text-sm sm:text-base text-golden font-medium mb-8 max-w-2xl mx-auto animate-fade-in px-2">
+          <p className="text-sm sm:text-base text-golden font-medium mb-6 max-w-2xl mx-auto animate-fade-in px-2">
             ✨ Free service in the initial phase. If you are satisfied with the result, then we charge you.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 animate-fade-in px-2">
-            <Button asChild size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 animate-glow bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white">
+            <Button asChild size="lg" className="w-full sm:w-auto text-base sm:text-lg px-8 py-4 sm:px-8 sm:py-6 animate-glow bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white">
               <a href={TYPEFORM_URL} target="_blank" rel="noopener noreferrer">
                 Start Your Automation Journey
               </a>
             </Button>
             <Button
               size="lg"
-              className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 text-primary hover:text-primary/80 transition-colors hover:bg-transparent"
+              className="w-full sm:w-auto text-base sm:text-lg px-8 py-4 sm:px-6 sm:py-6 text-primary hover:text-primary/80 transition-colors hover:bg-transparent"
               variant="ghost"
               onClick={() => scrollToSection("calculator")}
             >
