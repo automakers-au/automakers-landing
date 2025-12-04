@@ -16,7 +16,7 @@ export const ROICalculator = () => {
     const rate = parseFloat(hourlyRate) || 0;
     const frequency = parseFloat(timesPerDay) || 0;
     const minutes = parseFloat(timePerTask) || 0;
-    
+
     const hoursPerTask = minutes / 60;
     const costPerTask = hoursPerTask * rate;
     const dailyCost = costPerTask * frequency;
@@ -30,11 +30,11 @@ export const ROICalculator = () => {
 
     // Automation cost is 50% of monthly cost
     const automationCost = monthlyCost * 0.5;
-    
+
     // Assuming 50% automation efficiency for both time and cost
     const monthlySavingsBeforeCost = monthlyCost * 0.5;
     const annualSavingsBeforeCost = annualCost * 0.5;
-    
+
     // Net savings after amortizing automation cost over 12 months
     const monthlySavings = monthlySavingsBeforeCost - (automationCost / 12);
     const annualSavings = annualSavingsBeforeCost - automationCost;
@@ -127,11 +127,12 @@ export const ROICalculator = () => {
 
           <Button
             onClick={() => setShowResults(true)}
-            className="w-full text-lg py-6 animate-glow"
+            className="w-full text-lg py-6 animate-glow text-white"
             size="lg"
           >
             <TrendingUp className="mr-2 h-5 w-5" />
-            Calculate Your Savings
+            <span className="hidden sm:inline">Calculate Your Savings</span>
+            <span className="sm:hidden">Calculate</span>
           </Button>
 
           {showResults && (
@@ -185,7 +186,7 @@ export const ROICalculator = () => {
               </div>
 
               <div className="md:col-span-2">
-                <Button asChild className="w-full text-base sm:text-lg py-5 sm:py-6 bg-gradient-to-r from-primary to-accent hover:opacity-90" size="lg">
+                <Button asChild className="w-full text-base sm:text-lg py-5 sm:py-6 bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white" size="lg">
                   <a href="https://form.typeform.com/to/Tw2sG6yF" target="_blank" rel="noopener noreferrer">
                     Get Started - Book Your Consultation
                   </a>
