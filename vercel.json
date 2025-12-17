@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://www.automakers.com.au/:path*",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "automakers.com.au"
+        }
+      ],
+      "missing": [
+        {
+          "type": "host",
+          "value": "/.well-known/(.*)"
+        }
+      ]
+    },
+    {
+      "source": "/old-lovable-path",
+      "destination": "/new-vercel-path",
+      "permanent": true
+    }
+  ]
+}

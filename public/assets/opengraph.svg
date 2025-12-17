@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#00C6AE"/>
+      <stop offset="100%" stop-color="#7C4DFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#051022" />
+  <g transform="translate(60,60)">
+    <rect width="1080" height="510" rx="24" fill="url(#g)" opacity="0.12" />
+    <text x="40" y="140" font-family="Inter, Arial, sans-serif" font-size="56" fill="#ffffff">Automakers</text>
+    <text x="40" y="210" font-family="Inter, Arial, sans-serif" font-size="36" fill="#e6f7f3">AI Automation & Workflow</text>
+    <text x="40" y="270" font-family="Inter, Arial, sans-serif" font-size="24" fill="#cfeee8">Save time • Reduce costs • Scale smarter</text>
+    <rect x="40" y="320" width="260" height="56" rx="8" fill="#00C6AE" />
+    <text x="80" y="358" font-family="Inter, Arial, sans-serif" font-size="20" fill="#051022">Start Your Automation</text>
+  </g>
+</svg>
