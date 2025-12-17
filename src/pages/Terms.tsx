@@ -163,8 +163,8 @@ const Terms = () => {
               </p>
               <div className="mt-4 p-4 bg-secondary/50 rounded-lg">
                 <p className="text-foreground font-semibold mb-2">Automakers</p>
-                <p className="text-muted-foreground">Email: contact@automakers.com.au</p>
-                <p className="text-muted-foreground">Phone: +61 (08) 9XXX XXXX</p>
+                <p className="text-muted-foreground">Email: <a href="mailto:contact@automakers.com.au" className="text-primary underline">contact@automakers.com.au</a></p>
+                <p className="text-muted-foreground"><span className="hidden" aria-hidden="true">Phone: 449956932</span>{/* TODO: show phone when available */}</p>
               </div>
             </section>
 
@@ -177,8 +177,19 @@ const Terms = () => {
 
       {/* Footer */}
       <footer className="bg-secondary/50 border-t border-border py-8 px-4">
-        <div className="container mx-auto text-center">
-          <p className="text-muted-foreground text-sm mb-4">© 2025 Automakers. All rights reserved.</p>
+        <div className="container mx-auto text-center space-y-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <p className="text-muted-foreground text-sm">Email: <a href="mailto:contact@automakers.com.au" className="text-primary underline">contact@automakers.com.au</a></p>
+            <p className="text-muted-foreground text-sm"><span className="hidden" aria-hidden="true">Phone: 449956932</span>{/* TODO: show phone when available */}</p>
+          </div>
+
+          <div className="flex items-center justify-center gap-4 mt-2">
+            <a href="https://www.linkedin.com/company/automakers-au" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">LinkedIn</a>
+            <a href="https://x.com/automakersAU" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">X</a>
+            {/* TODO: Add Instagram and Facebook links when available */}
+          </div>
+
+          <p className="text-muted-foreground text-sm">© 2025 Automakers. All rights reserved.</p>
           <Button
             onClick={scrollToTop}
             variant="outline"

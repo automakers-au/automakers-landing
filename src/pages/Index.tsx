@@ -547,30 +547,22 @@ const Index = () => {
               <ul className="space-y-2 text-muted-foreground text-sm sm:text-base">
                 <li className="flex items-center gap-2">
                   <Mail className="w-4 h-4 shrink-0" />
-                  <span className="break-all">contact@automakers.com.au</span>
+                  <a href="mailto:contact@automakers.com.au" className="break-all text-muted-foreground hover:text-primary">contact@automakers.com.au</a>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 shrink-0" />
-                  <span>+61 (08) 9XXX XXXX</span>
-                </li>
+
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4 text-sm sm:text-base">Follow Us</h4>
               <div className="flex gap-4">
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="https://www.linkedin.com/company/automakers-au" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                   <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="https://x.com/automakersAU" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                   <Twitter className="w-5 h-5 sm:w-6 sm:h-6" />
                 </a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Facebook className="w-5 h-5 sm:w-6 sm:h-6" />
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
-                </a>
+                {/* TODO: Add Facebook and Instagram links when available */}
               </div>
             </div>
           </div>
