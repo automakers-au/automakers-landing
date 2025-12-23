@@ -13,41 +13,28 @@ export const ROICalculator = () => {
   const [showResults, setShowResults] = useState(false);
 
   const calculateSavings = () => {
+    // Simplified Time Savings calculation per spec:
+    // Total Savings = (Task Duration × Frequency) × Hourly Rate
     const rate = parseFloat(hourlyRate) || 0;
     const frequency = parseFloat(timesPerDay) || 0;
     const minutes = parseFloat(timePerTask) || 0;
 
     const hoursPerTask = minutes / 60;
-    const costPerTask = hoursPerTask * rate;
-    const dailyCost = costPerTask * frequency;
-    const monthlyCost = dailyCost * 21.67; // Average working days per month
-    const annualCost = monthlyCost * 12;
+    const dailySavings = hoursPerTask * frequency * rate; // daily monetary savings
+    const monthlySavings = dailySavings * 21.67; // avg working days
+    const annualSavings = monthlySavings * 12;
 
-    // Time calculations
-    const dailyHours = hoursPerTask * frequency;
-    const monthlyHours = dailyHours * 21.67;
-    const annualHours = monthlyHours * 12;
-
-    // Automation cost is 50% of monthly cost
-    const automationCost = monthlyCost * 0.5;
-
-    // Assuming 50% automation efficiency for both time and cost
-    const monthlySavingsBeforeCost = monthlyCost * 0.5;
-    const annualSavingsBeforeCost = annualCost * 0.5;
-
-    // Net savings after amortizing automation cost over 12 months
-    const monthlySavings = monthlySavingsBeforeCost - (automationCost / 12);
-    const annualSavings = annualSavingsBeforeCost - automationCost;
-
-    // Time saved (50% of total time)
-    const monthlyTimeSaved = monthlyHours * 0.5;
-    const annualTimeSaved = annualHours * 0.5;
+    const dailyHoursSaved = hoursPerTask * frequency;
+    const monthlyHoursSaved = dailyHoursSaved * 21.67;
+    const annualHoursSaved = monthlyHoursSaved * 12;
 
     return {
+      dailySavings: dailySavings.toFixed(2),
       monthlySavings: monthlySavings.toFixed(0),
       annualSavings: annualSavings.toFixed(0),
-      monthlyTimeSaved: monthlyTimeSaved.toFixed(1),
-      annualTimeSaved: annualTimeSaved.toFixed(0),
+      dailyHoursSaved: dailyHoursSaved.toFixed(2),
+      monthlyHoursSaved: monthlyHoursSaved.toFixed(1),
+      annualHoursSaved: annualHoursSaved.toFixed(0),
     };
   };
 
@@ -58,10 +45,10 @@ export const ROICalculator = () => {
       <Card className="border-primary/20 bg-card/50 backdrop-blur-sm">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-            ROI Calculator
+            Time Savings Calculator
           </CardTitle>
           <CardDescription className="text-base">
-            Calculate savings by automating a single repetitive task
+            Project projected monetary savings from automating a repetitive task
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -131,7 +118,7 @@ export const ROICalculator = () => {
             size="lg"
           >
             <TrendingUp className="mr-2 h-5 w-5" />
-            <span className="hidden sm:inline">Calculate Your Savings</span>
+            <span className="hidden sm:inline">Calculate Time Savings</span>
             <span className="sm:hidden">Calculate</span>
           </Button>
 
@@ -140,46 +127,44 @@ export const ROICalculator = () => {
               <div className="grid md:grid-cols-2 gap-4">
                 <Card className="bg-primary/10 border-primary/30">
                   <CardHeader className="pb-3">
-                    <CardDescription>Net Monthly Savings</CardDescription>
+                    <CardDescription>Projected Daily Savings</CardDescription>
                     <CardTitle className="text-4xl font-bold text-primary">
-                      ${results.monthlySavings}
+                      ${results.dailySavings}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
-                      After automation costs
+                      Based on automated time recovered per day
                     </p>
                   </CardContent>
                 </Card>
 
                 <Card className="bg-primary/10 border-primary/30">
                   <CardHeader className="pb-3">
-                    <CardDescription>Net Annual Savings</CardDescription>
+                    <CardDescription>Projected Annual Savings</CardDescription>
                     <CardTitle className="text-4xl font-bold text-primary">
                       ${results.annualSavings}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      First year savings included
-                    </p>
+                    <p className="text-sm text-muted-foreground">Annual projection</p>
                   </CardContent>
                 </Card>
 
                 <Card className="bg-secondary/30 border-secondary/50">
                   <CardHeader className="pb-2 pt-4 px-4">
-                    <CardDescription className="text-xs">Monthly Time Saved</CardDescription>
+                    <CardDescription className="text-xs">Daily Time Saved</CardDescription>
                     <CardTitle className="text-2xl font-bold text-foreground">
-                      {results.monthlyTimeSaved} hrs
+                      {results.dailyHoursSaved} hrs
                     </CardTitle>
                   </CardHeader>
                 </Card>
 
                 <Card className="bg-secondary/30 border-secondary/50">
                   <CardHeader className="pb-2 pt-4 px-4">
-                    <CardDescription className="text-xs">Annual Time Saved</CardDescription>
+                    <CardDescription className="text-xs">Monthly Savings</CardDescription>
                     <CardTitle className="text-2xl font-bold text-foreground">
-                      {results.annualTimeSaved} hrs
+                      ${results.monthlySavings}
                     </CardTitle>
                   </CardHeader>
                 </Card>
